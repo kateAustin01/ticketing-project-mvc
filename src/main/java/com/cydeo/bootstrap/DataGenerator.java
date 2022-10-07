@@ -13,32 +13,26 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-
 @Component
 public class DataGenerator implements CommandLineRunner {
-
-    //HAS-A relationship between Datagenerator and service impl
 
     RoleService roleService;
     UserService userService;
     ProjectService projectService;
 
-
-    public DataGenerator(RoleService roleService, UserService userService,ProjectService projectService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
-
 
     @Override
     public void run(String... args) throws Exception {
 
 
-        RoleDTO adminRole = new RoleDTO(1L, "Admin");
-        RoleDTO managerRole = new RoleDTO(2L, "Manager");
-        RoleDTO employeeRole = new RoleDTO(3L, "Employee");
-
-        //add data to map
+        RoleDTO adminRole = new RoleDTO(1L,"Admin");
+        RoleDTO managerRole = new RoleDTO(2L,"Manager");
+        RoleDTO employeeRole = new RoleDTO(3L,"Employee");
 
         roleService.save(adminRole);
         roleService.save(managerRole);
@@ -77,5 +71,18 @@ public class DataGenerator implements CommandLineRunner {
         projectService.save(project1);
         projectService.save(project2);
         projectService.save(project3);
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

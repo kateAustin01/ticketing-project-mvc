@@ -53,8 +53,9 @@
                                             <div class="col">
                                                 <div class="form-group">
                                                     <label>Assigned Manager</label>
-                                                    <select name="assignedmanager" class="custom-select">
-                                                        <option></option>
+                                                    <select th:field="*{assignedManager}" name="assignedmanager" class="custom-select">
+                                                        <option th:value="''" th:text="Select"></option>
+                                                        <option th:each="manager : ${managers}" th:value="${manager.userName}" th:text="${manager.firstName +' '+ manager.lastName}"></option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -68,16 +69,16 @@
                                             </div>
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label th:field="*{endDate}" for="enddate">Project End Date</label>
-                                                    <input id="enddate" type="date" class="form-control">
+                                                    <label  for="enddate">Project End Date</label>
+                                                    <input th:field="*{endDate}" id="enddate" type="date" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label th:field="*{projectDetail}" for="projectdetail">Project Detail</label>
-                                                    <textarea id="projectdetail" class="form-control" placeholder="project detail"></textarea>
+                                                    <label  for="projectdetail">Project Detail</label>
+                                                    <textarea th:field="*{projectDetail}" id="projectdetail" class="form-control" placeholder="project detail"></textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -126,12 +127,15 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
+
+
+
+                                            <tr th:each="project :${projects}">
+                                                <td th:text="${project.projectCode}"></td>
+                                                <td th:text="${project.projectName}"></td>
+                                                <td th:text="${project.startDate+'-'+project.endDate}"></td>
+                                                <td th:text="${project.assignedManager.firstName+' '+project.assignedManager.lastName}"></td>
+                                                <td th:text="${project.projectStatus}"></td>
                                                 <td>
                                                     <a href="#"><button type="button" class="btn btn-warning rounded-0">Update</button></a>
                                                     <a href="#"><button type="button" class="btn btn-danger rounded-0">Delete</button></a>

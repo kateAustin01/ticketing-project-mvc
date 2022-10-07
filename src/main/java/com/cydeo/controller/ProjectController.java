@@ -19,16 +19,19 @@ public class ProjectController {
 
     public ProjectController(ProjectService projectService,UserService userService) {
         this.projectService = projectService;
+        this.userService = userService;
 
     }
 
 
     @GetMapping("/create")
-    public String createProject(Model model,UserDTO userDTO) {
-    model.addAttribute("project", new ProjectDTO());
-    model.addAttribute("projects", projectService.findAll());
-    model.addAttribute("users", userService.findAll());
-        return "/project/create";
+    public String createProject(Model model){
 
+        model.addAttribute("project",new ProjectDTO());
+        model.addAttribute("projects",projectService.findAll());
+        model.addAttribute("managers",userService.findAll());
+
+
+        return "/project/create";
     }
 }
