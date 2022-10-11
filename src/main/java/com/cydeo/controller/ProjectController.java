@@ -70,6 +70,15 @@ public class ProjectController {
         return "/project/update";
     }
 
+    @PostMapping  ("/update")
+    public String updateProject(String projectcode,ProjectDTO project){
+
+
+        projectService.update(project);
+
+        return "redirect:/project/create";
+    }
+
 
 
 
