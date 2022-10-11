@@ -1,14 +1,13 @@
 package com.cydeo.controller;
 
-import com.cydeo.bootstrap.DataGenerator;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.service.RoleService;
 import com.cydeo.service.UserService;
-import com.cydeo.service.impl.RoleServiceImpl;
-import org.springframework.stereotype.Component;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 @RequestMapping("/user")
@@ -34,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping("/create")
-    public String insertUser(@ModelAttribute("user") UserDTO user, Model model) {
+    public String insertUser(@ModelAttribute("user") UserDTO user) {
 
 
         userService.save(user);
